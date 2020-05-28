@@ -1,30 +1,329 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap");
 
-$main:#3498db;
-$dark:#2980b9;
+$main: #3498db;
+$dark: #2980b9;
+
+@mixin bg {
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(black, 0.6)), url(/img/bg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
 
 *,
 *::before,
-*::after{
+*::after {
     box-sizing: inherit;
     margin: 0;
     padding: 0;
 }
 
-html{
+html {
     box-sizing: border-box;
+    font-size: calc(16px + 1vw);
 }
 
-body{
-    font-family: 'Montserrat',sans-serif;
+body {
+    font-family: "Montserrat", sans-serif;
     line-height: 1.5;
+    color: white;
 }
 
-a{
+a {
     text-decoration: none;
     color: inherit;
 }
 
-li{
-    list-style:none;
+li {
+    list-style: none;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.u-mb-1 {
+    margin-bottom: 1rem;
+}
+.u-mb-2 {
+    margin-bottom: 2rem;
+}
+.u-mb-3 {
+    margin-bottom: 3rem;
+}
+
+.u-centered {
+    text-align: center;
+}
+
+.u-centered-2 {
+    margin-left: auto;
+    margin-right: auto;
+}
+// HEADER
+
+.header {
+    @include bg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.coder {
+    width: 12rem;
+    display: block;
+}
+
+// BUTTON
+
+.btn {
+    background-color: $main;
+    padding: 0.3em 2em;
+    border-radius: 2rem;
+    font-weight: bold;
+    border: none;
+    display: block;
+    width: max-content;
+    position: relative;
+    z-index: 4;
+    transition: all 400ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    font-size: inherit;
+    font-family: inherit;
+    color: white;
+    cursor: pointer;
+    &:link,
+    &:visited {
+        background-color: $main;
+        padding: 0.3em 2em;
+        border-radius: 2rem;
+        font-weight: bold;
+        border: none;
+        display: block;
+        width: max-content;
+        position: relative;
+        z-index: 4;
+    }
+
+    &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 1;
+        z-index: -1;
+        background-color: $main;
+        border-radius: 2rem;
+        transition: 400ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    }
+
+    &:hover {
+        background-color: $dark;
+        z-index: 0;
+        transform: translateY(-10px);
+        box-shadow: 0 0 1rem rgba($main, 0.7);
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+    &:hover::before {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.loader{
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    display: none;
+}
+
+// QUIZ
+
+.quiz {
+    @include bg;
+    padding: 1rem 0;
+    
+    .container {
+        display: none;
+        position: relative;
+        @media only screen and(max-width:600px) {
+            display: grid;
+        }
+    }
+
+    &__title {
+        font-size: 0.7rem;
+        margin-bottom: 1.2rem;
+    }
+
+    &__name {
+        text-align: center;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    &__count {
+        font-size: 2rem;
+        color: $main;
+    }
+
+    &__text {
+        font-size: 0.7rem;
+        background-color: rgba($main, 0.3);
+        padding: 1rem 2rem;
+        border-radius: 30px;
+        text-align: justify;
+        position: relative;
+        font-weight: 300;
+        margin-bottom: 0.8rem;
+        @media only screen and(max-width:600px) {
+            padding: 1rem;
+        }
+
+        &::before {
+            content: open-quote;
+            font-size: 7rem;
+            color: $main;
+            position: absolute;
+            top: 1.5rem;
+            left: -10px;
+            line-height: 0;
+        }
+    }
+}
+
+// ANSWERS BUTTON
+
+.answers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.6rem;
+    margin-bottom: 2rem;
+
+    @media only screen and(max-width:600px) {
+        grid-template-columns: 1fr;
+        order: 3;
+        margin-bottom: 0;
+    }
+}
+
+.answer {
+    width: 100%;
+    background-color: $main;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 0.7rem;
+    padding: 0.8em;
+    font-weight: 300;
+    font-family: inherit;
+
+    &:hover {
+        background-color: $dark;
+    }
+}
+
+// progress bar
+
+.progress {
+    width: 100%;
+    display: grid;
+    grid-template-columns:repeat(auto-fill,minmax(10%,1fr));
+    grid-gap: 2px;
+    border: 1px solid white;
+    height: 14px;
+
+    @media only screen and(max-width:600px) {
+        margin: 1rem 0;
+    }
+
+    &__bar {
+        width: 100%;
+        height: 10px;
+        background-color: #2ecc71;
+    }
+}
+
+// RESULT
+.result {
+    width: 90%;
+    margin: 0 auto;
+    height: 90vh;
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    place-items: center;
+
+    @media only screen and(max-width:600px) {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .title,
+    .btn {
+        grid-column: span 2;
+
+        @media only screen and(max-width:600px) {
+            grid-column: span 1;
+        }
+    }
+    &__text {
+        width: 8rem;
+        height: 8rem;
+        background-color: $main;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 50%;
+    }
+
+    .score {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .coder {
+        @media only screen and(max-width:600px) {
+            order: 2;
+        }
+    }
+
+    .btn {
+        order: 3;
+        &::before {
+            animation: animate 5s infinite;
+        }
+    }
+}
+
+@keyframes animate {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    20% {
+        transform: scale(2);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
 }

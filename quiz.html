@@ -6,9 +6,52 @@
     <title>Quiz &ndash; Playing</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
 </head>
 <body>
-    
+    <div class="quiz">
+        <img src="./img/loader.gif" alt="loading" class="loader">
+        <div class="container">
+            <h4 class="quiz__title">The Quiz Game</h4>
+
+            <h2 class="quiz__name">Question <span class="quiz__count">1</span></h2>
+
+            <p class="quiz__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, corporis minus. Reprehenderit provident sapiente odit non dicta alias unde harum. Quos quibusdam impedit, qui maxime iure officiis, quis quasi non minus at error repellat, assumenda nostrum fugit obcaecati. Cumque, fugit?
+            </p>
+
+            <div class="answers">
+                <button class="answer answer--1">Sample Answer </button>
+                <button class="answer answer--2">Sample Answer</button>
+                <button class="answer answer--3">Sample Answer</button>
+                <button class="answer answer--4">Sample Answer</button>
+            </div>
+
+            <div class="progress">
+                <!-- <div class="progress__bar"></div> -->
+                <!-- <div class="progress__bar"></div>
+                <div class="progress__bar"></div>
+                <div class="progress__bar"></div>
+                <div class="progress__bar"></div>
+                <div class="progress__bar"></div>
+                <div class="progress__bar"></div>
+                <div class="progress__bar"></div>
+                <div class="progress__bar"></div>
+                <div class="progress__bar"></div> -->
+            </div>
+        </div>
+
+        <div class="result">
+            <h1 class="title u-centered">The Quiz Game</h1>
+            <img src="./img/coder.svg" alt="" class="coder">
+            <p class="result__text">
+                <span class="score">10/10</span>
+                Score
+            </p>
+
+            <button class="btn">Play Again</button>
+        </div>
+    </div>
+
 </body>
 </html>
