@@ -274,8 +274,8 @@ li {
   width: 100%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(10%, 1fr))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(10%, 1fr));
+  -ms-grid-columns: (1fr)[10];
+      grid-template-columns: repeat(10, 1fr);
   grid-gap: 2px;
   border: 1px solid white;
   height: 14px;
