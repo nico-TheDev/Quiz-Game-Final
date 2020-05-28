@@ -58,7 +58,7 @@ let quizData = getDataFromAPI().then((result) => {
     });
 
     //questions are stored
-    console.log(questions);
+    // console.log(questions);
     //get random number then get question
     // First Call
     getAnotherQuestion();
@@ -99,7 +99,7 @@ function getAnotherQuestion() {
 
 function getRandom(answered) {
     let random = Math.floor(Math.random() * unansweredQuestions.length); // random number between 0 and 9
-    console.log(answered);
+    // console.log(answered);
     //calls the function
     if (answered.includes(random)) {
         getRandom(answered);
@@ -116,7 +116,7 @@ function decodeText(text) {
 }
 
 function getQuestion(questionItem) {
-    console.log(questionItem);
+    // console.log(questionItem);
     const order = [0, 1, 2, 3]; // created order of the questions
     questionText = questionItem.question; // assign the question to be displayed
     correctAnswer = questionItem.answer; // assigns the correct answer to the current question
@@ -127,7 +127,7 @@ function getQuestion(questionItem) {
         questionChoices.push(questionItem.choices[num]);
     });
 
-    console.log(questionChoices);
+    // console.log(questionChoices);
 }
 
 function displayQuestion() {
