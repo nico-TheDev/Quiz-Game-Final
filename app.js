@@ -13,7 +13,9 @@ let playerAnswer,
     playerScore = 0,
     questionText,
     questionChoices = [],
-    correctIndex;
+    correctIndex,
+    barColor,
+    bar;
 
 const questionDOM = document.querySelector(".quiz__text"),
     choicesDOM = document.querySelectorAll(".answer"),
@@ -144,14 +146,18 @@ function checkForAnswer(answers) {
     answers.forEach((btn) => {
         btn.addEventListener("click", function () {
             if (btn.textContent === correctAnswer) {
+                barColor = 'green';
                 btn.style.backgroundColor = "green";
                 playerScore++;
             } else {
                 answers.forEach((btn) => {
                     if (btn.textContent === correctAnswer) {
                         btn.style.backgroundColor = "green";
+                    }else{
+                        btn.disabled = true;
                     }
                 });
+                barColor = 'red';
                 btn.style.backgroundColor = "red";
             }
 
@@ -162,8 +168,8 @@ function checkForAnswer(answers) {
 }
 
 function updateProgress() {
-    const bar = document.createElement("div");
-    bar.className = "progress__bar";
+    bar = document.createElement('div');
+    bar.className = `progress__bar ${barColor}`;
     for (let i = 0; i < progressCounter; i++) {
         progressBar.appendChild(bar);
     }
@@ -179,5 +185,6 @@ function shuffle(array) {
 function resetDisplay() {
     choicesDOM.forEach((btn) => {
         btn.style.backgroundColor = "#3498db";
+        btn.disabled = false;
     });
 }
